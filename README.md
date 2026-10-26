@@ -9,8 +9,8 @@ Create a Python codebase that will leverage NASA's Advanced Diagnostics and Prog
 
 ## Dataset: 
 DXC'09 Industrial Track, Tier 1 (ADAPT-Lite)
-Sample (training) data: https://catalog.data.gov/dataset/dxc09-industrial-track-sample-data
-Competition (test) data: https://catalog.data.gov/dataset/dxc09-industrial-track-competition-data
+- Sample (training) data: https://catalog.data.gov/dataset/dxc09-industrial-track-sample-data
+- Competition (test) data: https://catalog.data.gov/dataset/dxc09-industrial-track-competition-data
 
 ## Research Target: 
 Classification model that will identify healthy vs faulty spacecraft power systems. 
