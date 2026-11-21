@@ -22,4 +22,3 @@ Built out the functions to load and process the data. It took some troubleshooti
    - Create a second file to analyze the data. 
    - Build out a model to leverage the processed data.
    - Overlay visualizations to depict the model predictions.
-   - Implement branches for my code to help me understand GitHub functionality. 
