@@ -45,9 +45,3 @@ accuracy = accuracy_score(y_test, predictions)
 matrix = confusion_matrix(y_test, predictions)
 print(f"Test accuracy: {accuracy:.3f}")
 
-from sklearn.ensemble import RandomForestClassifier
-
-forest = RandomForestClassifier(random_state=42)
-forest.fit(X_train, y_train)
-forest_predictions = forest.predict(X_test)
-print(f"Forest accuracy: {accuracy_score(y_test, forest_predictions): .3f}")
