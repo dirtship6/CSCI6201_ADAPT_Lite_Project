@@ -22,8 +22,8 @@ OUTPUT = Path(__file__).resolve().parent / "Figures"
 train = build_table("Data/DXC09_Industrial_Tier1SampleData_20090225", "Data/DXC09_Industrial_Tier1SampleData_20090225/ADAPTtier1Data.xls")
 test = build_table("Data/DXC09_Industrial_Tier1CompetitionData20090327", "Data/DXC09_Industrial_Tier1CompetitionData20090327/ADAPTtier1CompetitionData.xls")
 
-assert train.shape == (59, 62)  # Checking data before moving on, could possibly pull from check_data
-assert test.shape == (62, 62)
+assert train.shape == (59, 82)  # Checking data before moving on, could possibly pull from check_data
+assert test.shape == (62, 82)
 
 feature_names = list(train.columns.drop(["run", "faulty"]))
 X_train = train[feature_names].to_numpy()
@@ -43,7 +43,7 @@ predictions = model.predict(X_test)
 
 accuracy = accuracy_score(y_test, predictions)
 matrix = confusion_matrix(y_test, predictions)
-print(f"Test accuracy: {accuracy:.3f}")
+print(f"Test accuracy: {accuracy:.1%}")
 
 
 from sklearn.ensemble import RandomForestClassifier
@@ -51,4 +51,4 @@ from sklearn.ensemble import RandomForestClassifier
 forest = RandomForestClassifier(random_state=42)
 forest.fit(X_train, y_train)
 forest_predictions = forest.predict(X_test)
-print(f"Forest accuracy: {accuracy_score(y_test, forest_predictions): .3f}")
+print(f"Forest accuracy: {accuracy_score(y_test, forest_predictions): .1%}")

@@ -58,6 +58,7 @@ def run_features(run):
             row[sensor + "_mean_change"] = window[sensor].mean() - start[sensor].mean() #Windos average minus start average
             row[sensor + "_spread_change"] = window[sensor].std() - start[sensor].std() #How much the readings shift after the start versus before
             row[sensor + "_slope"] = np.polyfit(window["TIME"], window[sensor], 1)[0]   #Fits a line through the windows readings
+            row[sensor + "max_jump"] = (window[sensor] - start[sensor].mean()).abs().max()  #
     return row
 
 #Read answer key
@@ -90,14 +91,14 @@ def build_table(run_folder, answer_key_xls):
 #Main block to run when called
 if __name__ == "__main__":
     #Initial sample data
-    train = build_table("/Users/cvo/Desktop/GW/CSCI6201_SW/Project/Data/DXC09_Industrial_Tier1SampleData_20090225", "/Users/cvo/Desktop/GW/CSCI6201_SW/Project/Data/DXC09_Industrial_Tier1SampleData_20090225/ADAPTtier1Data.xls")
+    train = build_table("Data/DXC09_Industrial_Tier1SampleData_20090225", "Data/DXC09_Industrial_Tier1SampleData_20090225/ADAPTtier1Data.xls")
     
-    print(train.shape)  #Expected output (59, 62)
+    print(train.shape)  #Expected output (59, 82)
 
     #Competition data to compare to
-    test = build_table("/Users/cvo/Desktop/GW/CSCI6201_SW/Project/Data/DXC09_Industrial_Tier1CompetitionData20090327", "/Users/cvo/Desktop/GW/CSCI6201_SW/Project/Data/DXC09_Industrial_Tier1CompetitionData20090327/ADAPTtier1CompetitionData.xls")
+    test = build_table("Data/DXC09_Industrial_Tier1CompetitionData20090327", "Data/DXC09_Industrial_Tier1CompetitionData20090327/ADAPTtier1CompetitionData.xls")
 
-    print(test.shape)   #Expected output (62, 62)
+    print(test.shape)   #Expected output (62, 82)
 
 
     # Plot how many runs are healthy and faulty in each set
@@ -114,6 +115,6 @@ if __name__ == "__main__":
     ax.set(ylabel="Number of runs", title="Healthy vs. faulty runs", ylim=(0, 40))
     ax.legend()
 
-    OUTPUT = Path("figures")
-    OUTPUT.mkdir(exist_ok=True)
+    OUTPUT = Path("Figures")
     fig.savefig(OUTPUT / "healthy_vs_faulty.png", dpi=150)
+
